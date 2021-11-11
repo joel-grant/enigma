@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'date'
 require './lib/enigma'
 
@@ -5,6 +6,8 @@ describe Enigma do
   let(:enigma) { Enigma.new }
   let(:encrypt_return) { { encryption: "keder ohulw", key: "02715", date: "040895" } }
   before(:each) do
+
+    @today = Date.today
   end
 
   describe '#initialize' do
@@ -15,6 +18,16 @@ describe Enigma do
     it 'can return and contain the open .txt file' do
 
     end
+  end
+  describe '#current_date' do
+    it 'returns a string' do
+      expect(enigma.current_date).to be_a String
+    end
+
+    it 'returns the current date as MMDDYY' do
+      expect(enigma.current_date).to eq(@today.strftime("%m%d%y"))
+    end
+
   end
 
   describe '#encrypt' do
