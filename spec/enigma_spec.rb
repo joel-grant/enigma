@@ -19,11 +19,20 @@ describe Enigma do
 
     end
   end
+
+  describe '#new_key' do
+    it 'returns the number as a string' do
+      expect(enigma.new_key).to be_a String
+    end
+    it 'returns a randomly generated 5-digit key' do
+      expect(enigma.new_key.length).to eq(5)
+    end
+  end
+
   describe '#current_date' do
     it 'returns a string' do
       expect(enigma.current_date).to be_a String
     end
-
     it 'returns the current date as MMDDYY' do
       expect(enigma.current_date).to eq(@today.strftime("%m%d%y"))
     end
