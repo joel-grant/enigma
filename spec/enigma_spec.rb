@@ -3,7 +3,7 @@ require './lib/enigma'
 
 describe Enigma do
   let(:enigma) { Enigma.new }
-  let(:encrypt_return) { { encryption: "hello world", key: "02715", date: "040895" } }
+  let(:encrypt_return) { { encryption: "keder ohulw", key: "02715", date: "040895" } }
   before(:each) do
   end
 
@@ -25,6 +25,12 @@ describe Enigma do
 
   end
 
-  describe '#decrypt' do
+  xdescribe '#decrypt' do
+    it 'returns a hash containing the decrypted text, the key and the date used' do
+      text = "keder ohulw"
+      key = "02715"
+      date = "040895"
+      expect(enigma.decrypt(text, key, date)).to eq({encryption: "hello world", key: "02715", date: "040895"})
+    end
   end
 end
