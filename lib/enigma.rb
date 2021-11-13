@@ -24,13 +24,14 @@ class Enigma
     today.strftime("%m%d%y")
   end
 
-  # def key_shift(key)
-  #   a_key = key[0..1].to_i
-  #   b_key = key[1..2].to_i
-  #   c_key = key[2..3].to_i
-  #   d_key = key[3..4].to_i
-  #   [a_key, b_key, c_key, d_key]
-  # end
+  def key_shift(key)
+    keys = []
+    4.times do |num|
+      keys << key[num..num+1]
+    end
+    keys
+    # require 'pry'; binding.pry
+  end
 
   def offset_shift
 
@@ -44,11 +45,11 @@ class Enigma
     incoming_message = message.split("")
     test_array = []
     offset_shift = (date.to_i * date.to_i).to_s[-4..-1]
-    # key_shift(key)
-    a_key = key[0..1].to_i
-    b_key = key[1..2].to_i
-    c_key = key[2..3].to_i
-    d_key = key[3..4].to_i
+    key_shift(key)
+    # a_key = key[0..1].to_i
+    # b_key = key[1..2].to_i
+    # c_key = key[2..3].to_i
+    # d_key = key[3..4].to_i
 
     a_offset = offset_shift[0].to_i
     b_offset = offset_shift[1].to_i
