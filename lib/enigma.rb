@@ -78,6 +78,6 @@ class Enigma
       decrypted_message += @alphabet.rotate(@alphabet.size - shifts[0] + index)[0]
       shifts.rotate!(1)
     end
-    { :date => date, :encryption => encrypted_message, :key => key }
+    { :date => date, :encryption => decrypted_message, :key => key }
   end
 end
