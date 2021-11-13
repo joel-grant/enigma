@@ -19,6 +19,11 @@ describe Enigma do
 
     end
   end
+  describe '#key_shift' do
+    it 'returns an array of the 4 key shifts' do
+      expect(enigma.key_shift(encrypt_return[:key])).to eq(["02", "27", "71", "15"])
+    end
+  end
 
   describe '#new_key' do
     it 'returns the number as a string' do
@@ -33,6 +38,7 @@ describe Enigma do
     it 'returns a string' do
       expect(enigma.current_date).to be_a String
     end
+
     it 'returns the current date as MMDDYY' do
       expect(enigma.current_date).to eq(@today.strftime("%m%d%y"))
     end
@@ -47,7 +53,7 @@ describe Enigma do
 
   end
 
-  xdescribe '#decrypt' do
+  describe '#decrypt' do
     it 'returns a hash containing the decrypted text, the key and the date used' do
       text = "keder ohulw"
       key = "02715"
