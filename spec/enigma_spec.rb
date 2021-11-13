@@ -19,25 +19,27 @@ describe Enigma do
 
     end
   end
+
   describe '#create_shifts' do
-    it 'returns an array' do 
-      keys = ["02", "27", "71", "15"]
-      offsets = ["1", "0", "2", "5"]
-      expect(enigma.create_shifts(keys, offsets)).to be_a Array
+    it 'returns an array' do
+      key = "02715"
+      date = "040895"
+      expect(enigma.create_shifts(key, date)).to be_a Array
     end
 
     it 'must only return elements of type Integer' do
-      keys = ["02", "27", "71", "15"]
-      offsets = ["1", "0", "2", "5"]
-      expect(enigma.create_shifts(keys, offsets)[0]).to be_a Integer
+      key = "02715"
+      date = "040895"
+      expect(enigma.create_shifts(key, date)[0]).to be_a Integer
     end
 
     it 'creates and returns an array of the final shifts for the encrypter' do
-      keys = ["02", "27", "71", "15"]
-      offsets = ["1", "0", "2", "5"]
-      expect(enigma.create_shifts(keys, offsets)).to eq([3, 27, 73, 20])
+      key = "02715"
+      date = "040895"
+      expect(enigma.create_shifts(key, date)).to eq([3, 27, 73, 20])
     end
   end
+
   describe '#create_offset' do
     it 'creates an array of each offset digit' do
       expect(enigma.create_offset(encrypt_return[:date])).to eq("1025")
