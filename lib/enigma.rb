@@ -30,43 +30,36 @@ class Enigma
       keys << key[num..num+1]
     end
     keys
-    # require 'pry'; binding.pry
   end
 
-  def offset_shift
-
+  def create_offset(date)
+    squared_date = (date.to_i * date.to_i)
+    offset_string = squared_date.to_s[-4..-1]
   end
 
-  def shift
+  def offset_shift(date)
+    offset = create_offset(date)
+    offsets = []
+    4.times do |num|
+      offsets << offset[num]
+    end
+    offsets
+  end
 
+  def create_shifts(keys, offsets)
+    final_shifts = []
+    keys.each.with_index(0) do |number, index|
+      final_shifts << offsets[index].to_i + number.to_i
+    end
+    final_shifts
   end
 
   def encrypt(message, key = new_key, date = current_date)
     incoming_message = message.split("")
-    test_array = []
     offset_shift = (date.to_i * date.to_i).to_s[-4..-1]
-    key_shift(key)
-    # a_key = key[0..1].to_i
-    # b_key = key[1..2].to_i
-    # c_key = key[2..3].to_i
-    # d_key = key[3..4].to_i
-
-    a_offset = offset_shift[0].to_i
-    b_offset = offset_shift[1].to_i
-    c_offset = offset_shift[2].to_i
-    d_offset = offset_shift[3].to_i
-
-    a_shift = a_key + a_offset
-    b_shift = b_key + b_offset
-    c_shift = c_key + c_offset
-    d_shift = d_key + d_offset
-
-    shift_values = [a_shift, b_shift, c_shift, d_shift]
-    shifts = []
-    shift_values.each do |value|
-      shifts << value
-    end
-
+    keys = key_shift(key)
+    offsets = offset_shift(date)
+    shifts = create_shifts(keys, offsets)
     encrypted_message = ""
     incoming_message.each.with_index do |char|
       index = @alphabet.index(char)
