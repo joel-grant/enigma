@@ -1,6 +1,8 @@
 require './lib/enigma'
+require './lib/interface'
 
-enigma = Enigma.new
+file = File.open('message.txt', 'r')
+message = file.read
 
-enigma.encrypt("hello world", "02715", "040895")
-enigma.decrypt("keder ohulw", "02715", "040895")
+go_go_gadget_interface = Interface.new(message, ARGV)
+go_go_gadget_interface.start_enigma
