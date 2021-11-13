@@ -46,7 +46,9 @@ class Enigma
     offsets
   end
 
-  def create_shifts(keys, offsets)
+  def create_shifts(key, date)
+    keys = key_shift(key)
+    offsets = offset_shift(date)
     final_shifts = []
     keys.each.with_index(0) do |number, index|
       final_shifts << offsets[index].to_i + number.to_i
@@ -56,12 +58,9 @@ class Enigma
 
   def encrypt(message, key = new_key, date = current_date)
     incoming_message = message.split("")
-    offset_shift = (date.to_i * date.to_i).to_s[-4..-1]
-    keys = key_shift(key)
-    offsets = offset_shift(date)
-    shifts = create_shifts(keys, offsets)
+    shifts = create_shifts(key, date)
     encrypted_message = ""
-    incoming_message.each.with_index do |char|
+    incoming_message.each do |char|
       index = @alphabet.index(char)
       encrypted_message += @alphabet.rotate(shifts[0] + index)[0]
       shifts.rotate!(1)
@@ -71,38 +70,13 @@ class Enigma
 
   def decrypt(message, key, date = current_date)
     incoming_message = message.split("")
-    test_array = []
-    offset_shift = (date.to_i * date.to_i).to_s[-4..-1]
-    # key_shift(key)
-    a_key = key[0..1].to_i
-    b_key = key[1..2].to_i
-    c_key = key[2..3].to_i
-    d_key = key[3..4].to_i
-
-    a_offset = offset_shift[0].to_i
-    b_offset = offset_shift[1].to_i
-    c_offset = offset_shift[2].to_i
-    d_offset = offset_shift[3].to_i
-
-    a_shift = a_key + a_offset
-    b_shift = b_key + b_offset
-    c_shift = c_key + c_offset
-    d_shift = d_key + d_offset
-    shift_values = [a_shift, b_shift, c_shift, d_shift]
-    shifts = []
-    shift_values.each do |value|
-      shifts << value
-    end
-
-    decrypted_message = ""
-    incoming_message.each.with_index do |char|
-      char_index = @alphabet.index(char)
-      decrypted_message += @alphabet.rotate(@alphabet.size - shifts[0] + char_index)[0]
+    shifts = create_shifts(key, date)
+    encrypted_message = ""
+    incoming_message.each do |char|
+      index = @alphabet.index(char)
+      encrypted_message += @alphabet.rotate(@alphabet.size - shifts[0] + index)[0]
       shifts.rotate!(1)
     end
-
-    { :date => date, :encryption => decrypted_message, :key => key }
-
+    { :date => date, :encryption => encrypted_message, :key => key }
   end
-
 end
