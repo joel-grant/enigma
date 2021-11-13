@@ -11,21 +11,14 @@ describe Interface do
 
   before(:each) do
     @file = File.open('message.txt', 'r')
-    # @message = @file.read
-    # @args = ARGV
     @interface = Interface.new(message, [in_file, out_file])
     @enigma = Enigma.new
-    # require 'pry'; binding.pry
   end
 
   describe '#initialize' do
     it 'contains returns an instance of Interface' do
       expect(@interface).to be_a Interface
     end
-
-    # it 'returns the file to read' do
-    #   expect().to eq('message.txt')
-    # end
 
     it 'returns the file to read ' do
       expect(out_file).to eq('encrypted.txt')
@@ -47,8 +40,4 @@ describe Interface do
       expect(@interface.display_output({ encryption: "keder ohulw", key: "02715", date: "040895" })).to eq("Created 'encrypted.txt' with key 02715 and date 040895")
     end
   end
-
-
-
-
 end
