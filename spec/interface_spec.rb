@@ -1,10 +1,11 @@
 require './lib/enigma'
-require './lib/openable'
+require './lib/interface'
 
-describe Openable do
+describe Interface do
   before(:each) do
     @file = File.open('message.txt')
     @test = @file.read
     @args = ARGV
   end
+
 end
