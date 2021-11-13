@@ -15,6 +15,7 @@ class Enigma
   # def self.from_file(text, key, date)
   #   enigma = Enigma.new
   # end
+
   def new_key
     rand(00000..99999).to_s.rjust(5, "0")
   end
@@ -71,10 +72,10 @@ class Enigma
   def decrypt(message, key, date = current_date)
     incoming_message = message.split("")
     shifts = create_shifts(key, date)
-    encrypted_message = ""
+    decrypted_message = ""
     incoming_message.each do |char|
       index = @alphabet.index(char)
-      encrypted_message += @alphabet.rotate(@alphabet.size - shifts[0] + index)[0]
+      decrypted_message += @alphabet.rotate(@alphabet.size - shifts[0] + index)[0]
       shifts.rotate!(1)
     end
     { :date => date, :encryption => encrypted_message, :key => key }
