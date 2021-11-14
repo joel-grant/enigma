@@ -36,15 +36,17 @@ describe Interface do
   #   end
   # end
 
-  describe '#display_output' do
+  describe '#display_encryption' do
     it 'returns the hash that is used to display the output' do
-      expect(@interface.display_output({ encryption: "keder ohulw", key: "02715", date: "040895" })).to eq("Created 'encrypted.txt' with key 02715 and date 040895")
+      expect(@interface.display_encryption({ encryption: "keder ohulw", key: "02715", date: "040895" })).to eq("Created 'encrypted.txt' with the key 02715 and date 040895")
     end
   end
 
-  describe '#out' do
-    it 'writes the encrypted text to the file' do
-      expect(@interface.out(encryption)).to eq(-1)
-    end
-  end
+  # describe '#write_to_file' do
+  #   it 'writes the encrypted text to the file' do
+  #     file_1 = File.open("encrypted.rb", 'r')
+  #     text = file_1.read
+  #     expect(@interface.write_to_file(encryption)).to eq(text)
+  #   end
+  # end
 end
