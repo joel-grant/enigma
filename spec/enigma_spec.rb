@@ -87,7 +87,7 @@ describe Enigma do
 
   describe '#decrypt' do
     it 'returns a hash containing the decrypted text, the key and the date used' do
-      text = "hello world"
+      text = "keder ohulw"
       key = "02715"
       date = "040895"
       expect(enigma.decrypt(text, key, date)).to eq({encryption: "hello world", key: "02715", date: "040895"})
