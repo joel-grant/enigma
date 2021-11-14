@@ -4,11 +4,6 @@ class Enigma
   attr_accessor :file, :text, :key, :date, :write, :alphabet
 
   def initialize
-    @file   = File.open('message.txt', 'r')
-    @text   = @file.read
-    @key    = ARGV[2]
-    @date   = ARGV[3]
-    @write  = ARGV[1]
     @alphabet = ("a".."z").to_a << " "
   end
 
@@ -58,26 +53,34 @@ class Enigma
   end
 
   def encrypt(message, key = new_key, date = current_date)
-    incoming_message = message.split("")
+    incoming_message = message.downcase.split("")
     shifts = create_shifts(key, date)
     encrypted_message = ""
     incoming_message.each do |char|
-      index = @alphabet.index(char)
-      encrypted_message += @alphabet.rotate(shifts[0] + index)[0]
+      if @alphabet.include?(char)
+        index = @alphabet.index(char)
+        encrypted_message += @alphabet.rotate(shifts[0] + index)[0]
+      else
+        encrypted_message += char
+      end
       shifts.rotate!(1)
     end
     { :date => date, :encryption => encrypted_message, :key => key }
   end
 
   def decrypt(message, key, date = current_date)
-    incoming_message = message.split("")
+    incoming_message = message.downcase.split("")
     shifts = create_shifts(key, date)
     decrypted_message = ""
     incoming_message.each do |char|
-      index = @alphabet.index(char)
-      decrypted_message += @alphabet.rotate(@alphabet.size - shifts[0] + index)[0]
+      if @alphabet.include?(char)
+        index = @alphabet.index(char)
+        decrypted_message += @alphabet.rotate(@alphabet.size - shifts[0] + index)[0]
+      else
+        decrypted_message += char
+      end
       shifts.rotate!(1)
     end
-    { :date => date, :encryption => encrypted_message, :key => key }
-  end
+    { :date => date, :encryption => decrypted_message, :key => key }
+  end 
 end

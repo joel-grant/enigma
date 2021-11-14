@@ -6,7 +6,6 @@ describe Enigma do
   let(:enigma) { Enigma.new }
   let(:encrypt_return) { { encryption: "keder ohulw", key: "02715", date: "040895" } }
   before(:each) do
-
     @today = Date.today
   end
 
