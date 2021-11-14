@@ -1,23 +1,11 @@
-require 'date'
+require './lib/generate'
 
 class Enigma
-  attr_accessor :file, :text, :key, :date, :write, :alphabet
+  include Generate
+  attr_accessor :alphabet
 
   def initialize
     @alphabet = ("a".."z").to_a << " "
-  end
-
-  # def self.from_file(text, key, date)
-  #   enigma = Enigma.new
-  # end
-
-  def new_key
-    rand(00000..99999).to_s.rjust(5, "0")
-  end
-
-  def current_date
-    today = Date.today
-    today.strftime("%m%d%y")
   end
 
   def key_shift(key)
@@ -82,5 +70,5 @@ class Enigma
       shifts.rotate!(1)
     end
     { :date => date, :encryption => decrypted_message, :key => key }
-  end 
+  end
 end
