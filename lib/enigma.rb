@@ -69,14 +69,18 @@ class Enigma
   end
 
   def decrypt(message, key, date = current_date)
-    incoming_message = message.split("")
+    incoming_message = message.downcase.split("")
     shifts = create_shifts(key, date)
     decrypted_message = ""
     incoming_message.each do |char|
-      index = @alphabet.index(char)
-      decrypted_message += @alphabet.rotate(@alphabet.size - shifts[0] + index)[0]
+      if @alphabet.include?(char)
+        index = @alphabet.index(char)
+        decrypted_message += @alphabet.rotate(@alphabet.size - shifts[0] + index)[0]
+      else
+        decrypted_message += char
+      end
       shifts.rotate!(1)
     end
     { :date => date, :encryption => decrypted_message, :key => key }
-  end
+  end 
 end
