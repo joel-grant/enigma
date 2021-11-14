@@ -14,8 +14,8 @@ describe Enigma do
       expect(enigma).to be_a Enigma
     end
 
-    it 'can return and contain the open .txt file' do
-
+    it 'can return the list of approved characters' do
+      expect(enigma.alphabet).to eq(("a".."z").to_a << " ")
     end
   end
 
@@ -87,7 +87,7 @@ describe Enigma do
 
   describe '#decrypt' do
     it 'returns a hash containing the decrypted text, the key and the date used' do
-      text = "keder ohulw"
+      text = "hello world"
       key = "02715"
       date = "040895"
       expect(enigma.decrypt(text, key, date)).to eq({encryption: "hello world", key: "02715", date: "040895"})

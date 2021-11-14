@@ -8,6 +8,7 @@ describe Interface do
   let(:message) { "hello world" }
   let(:out_file) { "encrypted.txt" }
   let(:in_file) { "outfile.txt" }
+  let(:encryption) { { encryption: "keder ohulw", key: "02715", date: "040895" } }
 
   before(:each) do
     @file = File.open('message.txt', 'r')
@@ -38,6 +39,12 @@ describe Interface do
   describe '#display_output' do
     it 'returns the hash that is used to display the output' do
       expect(@interface.display_output({ encryption: "keder ohulw", key: "02715", date: "040895" })).to eq("Created 'encrypted.txt' with key 02715 and date 040895")
+    end
+  end
+
+  describe '#out' do
+    it 'writes the encrypted text to the file' do
+      expect(@interface.out(encryption)).to eq(-1)
     end
   end
 end
