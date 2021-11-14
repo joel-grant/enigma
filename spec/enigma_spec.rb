@@ -14,8 +14,8 @@ describe Enigma do
       expect(enigma).to be_a Enigma
     end
 
-    it 'can return and contain the open .txt file' do
-
+    it 'can return the list of approved characters' do
+      expect(enigma.alphabet).to eq(("a".."z").to_a << " ")
     end
   end
 
