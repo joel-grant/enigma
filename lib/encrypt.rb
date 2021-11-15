@@ -4,5 +4,10 @@ require './lib/interface'
 file = File.open(ARGV[0], 'r')
 message = file.read
 
-go_go_gadget_interface = Interface.new(message, ARGV)
-go_go_gadget_interface.start_enigma_encryption
+interface = Interface.new(message, ARGV)
+encryption = interface.start_enigma_encryption
+interface.display_encryption(encryption)
+
+new_file = File.open(ARGV[1], 'w')
+new_file.write(encryption[:encryption])
+new_file.close

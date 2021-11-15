@@ -6,13 +6,14 @@ require './lib/interface'
 
 describe Interface do
   let(:message) { "hello world" }
-  let(:out_file) { "encrypted.txt" }
-  let(:in_file) { "outfile.txt" }
+  let(:in_file) { "encrypted.txt" }
+  let(:out_file) { "encrypted.txt" } #fix the fact that these two files have to be the same.  its a little goofy
   let(:encryption) { { encryption: "keder ohulw", key: "02715", date: "040895" } }
+  let(:decryption) { { encryption: "hello world", key: "02715", date: "040895"}}
 
   before(:each) do
     @file = File.open('message.txt', 'r')
-    @interface = Interface.new(message, [in_file, out_file])
+    @interface = Interface.new(message, [in_file, out_file, "02715", "040895"])
     @enigma = Enigma.new
   end
 
@@ -22,19 +23,53 @@ describe Interface do
     end
 
     it 'returns the file to read ' do
-      expect(out_file).to eq('encrypted.txt')
+      expect(@interface.in_file).to eq('encrypted.txt')
     end
 
     it 'contains the text from the open file' do
       expect(@interface.message).to eq(message)
     end
+
+    it 'contains the new Enigma object' do
+      expect(@interface.enigma).to be_a Enigma
+    end
+
+    it 'returns the file to write' do
+      expect(@interface.out_file).to eq("encrypted.txt")
+    end
+
+    it 'returns the key, if there is one provided' do
+      expect(@interface.key).to eq("02715").or nil
+    end
+
+    it 'returns the date, if there is one provided' do
+      expect(@interface.date).to eq("040895").or nil
+    end
   end
 
-  # describe '#start_enigma' do
-  #   it 'returns the appropriate hash' do
-  #     expect(@interface.start_enigma(message, "02715", "040895")).to eq({ encryption: "keder ohulw", key: "02715", date: "040895" })
-  #   end
-  # end
+  describe '#start_enigma_encryption' do
+    it 'returns the appropriate hash' do
+      expect(@interface.start_enigma_encryption).to be_a Hash
+    end
+    it 'has a hash with a key that is 5 digits long' do
+      expect(@interface.start_enigma_encryption[:key].length).to eq(5)
+    end
+    it 'has a hash with a date that is 6 digits long' do
+      expect(@interface.start_enigma_encryption[:date].length).to eq(6)
+    end
+  end
+
+  describe '#start_enigma_decryption' do
+    it 'returns a hash' do
+      expect(@interface.start_enigma_decryption).to be_a Hash
+    end
+    it 'has a hash with a key that is 5 digits long' do
+      expect(@interface.start_enigma_decryption[:key].length).to eq(5)
+    end
+    it 'has a hash with a date that is 6 digits long' do
+      expect(@interface.start_enigma_decryption[:date].length).to eq(6)
+    end
+  end
 
   describe '#display_encryption' do
     it 'returns the hash that is used to display the output' do
@@ -42,11 +77,9 @@ describe Interface do
     end
   end
 
-  # describe '#write_to_file' do
-  #   it 'writes the encrypted text to the file' do
-  #     file_1 = File.open("encrypted.rb", 'r')
-  #     text = file_1.read
-  #     expect(@interface.write_to_file(encryption)).to eq(text)
-  #   end
-  # end
+  describe '#display_decryption' do
+    it 'returns the hash that is used to display the output' do
+      expect(@interface.display_decryption(decryption)).to eq("Created 'encrypted.txt' with the key 02715 and date 040895")
+    end
+  end
 end
