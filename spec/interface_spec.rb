@@ -12,7 +12,7 @@ describe Interface do
   let(:decryption) { { encryption: "hello world", key: "02715", date: "040895"}}
 
   before(:each) do
-    @file = File.open('message.txt', 'r')
+    # @file = File.open('message.txt', 'r')
     @interface = Interface.new(message, [in_file, out_file, "02715", "040895"])
     @enigma = Enigma.new
   end
