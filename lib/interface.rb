@@ -1,7 +1,7 @@
 require './lib/enigma'
 
 class Interface
-  attr_reader :enigma, :in_file, :out_file, :message, :key, :date
+  attr_accessor :enigma, :in_file, :out_file, :message, :key, :date
 
   def initialize(message, details)
     @enigma   = Enigma.new
