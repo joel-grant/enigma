@@ -39,6 +39,7 @@ class Enigma
     shifts = @shift.create_shifts(key, date)
     @encryption[:key] = key
     @encryption[:date] = date
+    @encryption[:encryption] = ""
     cipher_encrypt(shifts, incoming_message)
     @encryption
   end
@@ -48,6 +49,7 @@ class Enigma
     shifts = @shift.create_shifts(key, date)
     @encryption[:key] = key
     @encryption[:date] = date
+    @encryption[:encryption] = ""
     cipher_decrypt(shifts, incoming_message)
     @encryption
   end
