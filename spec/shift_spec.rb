@@ -6,21 +6,12 @@ require './lib/shift'
 describe Shift do
   let(:encrypt_return) { { encryption: "keder ohulw", key: "02715", date: "040895" } }
   before(:each) do
-    @shift.make_the_shifts("02715", "040895")
-    @shift_1 = Shift.new
+    @shift = Shift.new
   end
 
   describe '#initialize' do
     it 'returns an instance of Shift' do
       expect(@shift).to be_a Shift
-    end
-
-    it 'returns the key' do
-      expect(@shift.key_offsets).to eq("02715")
-    end
-
-    it 'returns the date' do
-      expect(@shift.date_offsets).to eq("040895")
     end
   end
 
