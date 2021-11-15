@@ -2,7 +2,7 @@ require './lib/generate'
 require './lib/shift'
 class Enigma
   include Generate
-  attr_accessor :alphabet, :encryption, :shift
+  attr_reader :alphabet, :encryption, :shift
 
   def initialize
     @alphabet = ("a".."z").to_a << " "
