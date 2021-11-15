@@ -8,8 +8,6 @@ describe Shift do
 
   before(:each) do
     @shift = Shift.new
-    key = "02715"
-    date = "040895"
   end
 
   describe '#initialize' do
