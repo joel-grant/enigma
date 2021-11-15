@@ -5,13 +5,29 @@ require './lib/shift'
 
 describe Shift do
   let(:encrypt_return) { { encryption: "keder ohulw", key: "02715", date: "040895" } }
+
   before(:each) do
     @shift = Shift.new
+    key = "02715"
+    date = "040895"
+    @shift.create_shifts(key, date)
   end
 
   describe '#initialize' do
     it 'returns an instance of Shift' do
       expect(@shift).to be_a Shift
+    end
+    it 'returns the key' do
+      expect(@shift.key).to eq("02715")
+    end
+    it 'returns a string for key' do
+      expect(@shift.key).to be_a String
+    end
+    it 'returns the date' do
+      expect(@shift.date).to eq("040895")
+    end
+    it 'returns a string for date' do
+      expect(@shift.date).to be_a String
     end
   end
 
@@ -37,20 +53,19 @@ describe Shift do
 
   describe '#create_offset' do
     it 'creates an array of each offset digit' do
-      expect(@shift.create_offset(encrypt_return[:date])).to eq("1025")
+      expect(@shift.create_offset).to eq("1025")
     end
   end
 
   describe '#key_shift' do
     it 'returns an array of the 4 key shifts' do
-      expect(@shift.key_shift(encrypt_return[:key])).to eq(["02", "27", "71", "15"])
+      expect(@shift.key_shift).to eq(["02", "27", "71", "15"])
     end
   end
 
   describe '#offset_shift' do
     it 'returns an array of the 4 offset shifts' do
-      expect(@shift.offset_shift(encrypt_return[:date])).to eq(["1", "0", "2", "5"])
+      expect(@shift.offset_shift).to eq(["1", "0", "2", "5"])
     end
   end
-
 end
