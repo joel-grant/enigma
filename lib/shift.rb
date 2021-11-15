@@ -6,9 +6,13 @@ class Shift
     @date = ""
   end
 
-  def create_shifts(key, date)
+  def set_values(key, date)
     @key = key
     @date = date
+  end
+
+  def create_shifts(key, date)
+    set_values(key, date)
     keys = key_shift
     offsets = offset_shift
     final_shifts = []
