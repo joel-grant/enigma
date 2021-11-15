@@ -22,7 +22,8 @@ Overall Self-Evaluation Scores:
 - I have used mocks in a great deal of my tests to cut down on the creation of objects within my test files and to keep the testing robust.  I also selectively use let.
 - I have examples of `Integration Tests` in all of my test files to demonstrate complete functionality of all of my methods.  
 - I have examples of `Unit Tests` in all of my test files to check for correct data types, types of output and input.
-- Last but not least, I also have 100.0% test coverage and tests which run in under .5 seconds every time
+- Last but not least, I also have 100.0% test coverage and tests which run in under .5 seconds every time.
+- While testing output is usually more difficult, I also was able to include tests to verify the correctness of my CLI output.
 
 **Version Control**
 - A requirement for a passing project is that the project utilize a pull request workflow, have a minimum of 30 commits and have branches/pull requests with related functionality. All of my branches were named for a specific purpose and any code added/re-written was for the benefit of that functionality.  I also have Pull Requests full of documentation for what that Pull Request included as well as numerous commit messages to show the incremental changes.  The project is finished with 11+ pull requests and 80+ commits.
