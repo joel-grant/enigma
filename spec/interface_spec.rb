@@ -12,7 +12,6 @@ describe Interface do
   let(:decryption) { { encryption: "hello world", key: "02715", date: "040895"}}
 
   before(:each) do
-    @file = File.open('message.txt', 'r')
     @interface = Interface.new(message, [in_file, out_file, "02715", "040895"])
     @enigma = Enigma.new
   end
@@ -68,6 +67,12 @@ describe Interface do
     end
     it 'has a hash with a date that is 6 digits long' do
       expect(@interface.start_enigma_decryption[:date].length).to eq(6)
+    end
+    it 'returns the decrypted hash' do
+      @interface.message = encryption[:encryption]
+      @interface.key = encryption[:key]
+      @interface.date = encryption[:date]
+      expect(@interface.start_enigma_decryption).to eq(decryption)
     end
   end
 
