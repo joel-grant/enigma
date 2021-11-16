@@ -33,4 +33,4 @@
 - Last but not least, I also have 100.0% test coverage and tests which run in under .2 seconds every time.
 
 **Version Control**
-- All of my branches were named for a specific purpose and any code added/re-written was for the benefit of that functionality.  I also have Pull Requests full of documentation for what that Pull Request included as well as numerous commit messages to show the incremental changes.  The project is finished with 11+ pull requests and 80+ commits.
+- All of my branches were named for a specific purpose and any code added/re-written was for the benefit of that functionality.  I also have Pull Requests full of documentation for what that Pull Request included as well as numerous commit messages to show the incremental changes.  The project is finished with 13 pull requests and 90+ commits.
