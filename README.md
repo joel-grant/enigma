@@ -7,11 +7,11 @@
 ===============================================================================
 ### Self Evaluation
 
-Overall Self-Evaluation Scores:
-Functionality - 3
-Object Oriented Programming - 4
-Ruby Conventions and Mechanics - 4
-Test Driven Development - 4
+##### Overall Self-Evaluation Scores:
+- Functionality - 3
+- Object Oriented Programming - 4
+- Ruby Conventions and Mechanics - 4
+- Test Driven Development - 4
 
 **Functionality**
 - I rated my functionality a 3 because I implemented the #encrypt and #decrypt methods successfully, in addition to the Command Line Interface. These features work as expected and work with edge cases.
