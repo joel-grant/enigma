@@ -19,14 +19,4 @@ class Interface
   def start_enigma_decryption
     @enigma.decrypt(@message, @key, @date)
   end
-
-  def display_encryption(result)
-    display =  "Created \'#{@out_file}\' with the key #{result[:key]} and date #{result[:date]}"
-    p display
-  end
-
-  def display_decryption(result)
-    display = "Created \'#{@out_file}\' with the key #{result[:key]} and date #{result[:date]}"
-    p display
-  end
 end
