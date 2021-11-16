@@ -75,16 +75,4 @@ describe Interface do
       expect(@interface.start_enigma_decryption).to eq(decryption)
     end
   end
-
-  describe '#display_encryption' do
-    it 'returns the hash that is used to display the output' do
-      expect(@interface.display_encryption({ encryption: "keder ohulw", key: "02715", date: "040895" })).to eq("Created 'encrypted.txt' with the key 02715 and date 040895")
-    end
-  end
-
-  describe '#display_decryption' do
-    it 'returns the hash that is used to display the output' do
-      expect(@interface.display_decryption(decryption)).to eq("Created 'encrypted.txt' with the key 02715 and date 040895")
-    end
-  end
 end
