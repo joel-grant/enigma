@@ -1,8 +1,10 @@
+###### Enigma
+
+
 “Sometimes it is the people no one imagines anything of who do the things that no one can imagine”
 ― Alan Turing
 
-###Enigma
-
+===============================================================================
 ### Self Evaluation
 
 Overall Self-Evaluation Scores:
@@ -27,6 +29,7 @@ Test Driven Development - 4
 - I have used mocks in a great deal of my tests to cut down on the creation of objects within my test files and to keep the testing robust.  I also selectively use let.
 - I have examples of `Integration Tests` in all of my test files to demonstrate complete functionality of all of my methods and their internal functions.  
 - I have examples of `Unit Tests` in all of my test files to check for correct data types, types of output and input.
+- Edge casese are addressed and the code will ignore and move past any special characters it might otherwise try to convert.  At the same time, it will also ignore case.
 - Last but not least, I also have 100.0% test coverage and tests which run in under .2 seconds every time.
 
 **Version Control**
